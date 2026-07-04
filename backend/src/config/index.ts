@@ -7,10 +7,28 @@ dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 const getDatabaseUrl = () => {
   if (process.env.VERCEL) {
-    if (fs.existsSync("/var/task/backend/prisma/dev.db")) {
-      return "file:/var/task/backend/prisma/dev.db";
+    const tmpDbPath = "/tmp/dev.db";
+    // Copy the dev.db file to /tmp on startup if not already copied
+    if (!fs.existsSync(tmpDbPath)) {
+      let srcDbPath = "/var/task/prisma/dev.db";
+      if (fs.existsSync("/var/task/backend/prisma/dev.db")) {
+        srcDbPath = "/var/task/backend/prisma/dev.db";
+      } else if (fs.existsSync(path.join(__dirname, "../../prisma/dev.db"))) {
+        srcDbPath = path.join(__dirname, "../../prisma/dev.db");
+      }
+
+      try {
+        if (fs.existsSync(srcDbPath)) {
+          fs.copyFileSync(srcDbPath, tmpDbPath);
+          fs.chmodSync(tmpDbPath, 0o666); // Ensure read/write permissions
+        } else {
+          console.warn("Source database not found at " + srcDbPath);
+        }
+      } catch (err) {
+        console.error("Failed to copy SQLite database to /tmp:", err);
+      }
     }
-    return "file:/var/task/prisma/dev.db";
+    return `file:${tmpDbPath}`;
   }
   return process.env.DATABASE_URL || "file:./dev.db";
 };
