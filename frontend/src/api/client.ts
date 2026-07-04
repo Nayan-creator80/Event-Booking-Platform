@@ -10,6 +10,11 @@ const getBaseUrl = () => {
   if (rawUrl && !rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
     rawUrl = `https://${rawUrl}`;
   }
+
+  // Remove any trailing slashes to prevent double slashes (e.g. //api/v1)
+  if (rawUrl) {
+    rawUrl = rawUrl.replace(/\/+$/, "");
+  }
   
   return rawUrl.endsWith("/api/v1") ? rawUrl : `${rawUrl}/api/v1`;
 };
