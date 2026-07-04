@@ -76,8 +76,8 @@ app.use("/api/v1/admin", adminRoutes);
 // Error Handling (Must be last)
 app.use(errorHandler);
 
-// Only listen if not imported in tests
-if (process.env.NODE_ENV !== "test") {
+// Only listen if not imported in tests or Vercel
+if (process.env.NODE_ENV !== "test" && !process.env.VERCEL) {
   const PORT = config.port;
   app.listen(PORT, () => {
     logger.info(`Server is running in ${config.nodeEnv} mode on port ${PORT}`);
