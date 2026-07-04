@@ -84,3 +84,5 @@ if (process.env.NODE_ENV !== "test" && !process.env.VERCEL) {
     logger.info(`Swagger API docs available at http://localhost:${PORT}/api-docs`);
   });
 }
+
+export default app;
