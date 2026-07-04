@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const getBaseUrl = () => {
-  const rawUrl = import.meta.env.VITE_API_URL || "http://localhost:4000/api/v1";
+  const rawUrl = import.meta.env.VITE_API_URL || 
+    (typeof window !== "undefined" && window.location.origin.includes("vercel.app") 
+      ? window.location.origin + "/api/v1" 
+      : "http://localhost:4000/api/v1");
   return rawUrl.endsWith("/api/v1") ? rawUrl : `${rawUrl}/api/v1`;
 };
 
