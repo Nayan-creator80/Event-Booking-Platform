@@ -1,10 +1,16 @@
 import axios from "axios";
 
 const getBaseUrl = () => {
-  const rawUrl = import.meta.env.VITE_API_URL || 
+  let rawUrl = import.meta.env.VITE_API_URL || 
     (typeof window !== "undefined" && window.location.origin.includes("vercel.app") 
       ? window.location.origin + "/api/v1" 
       : "http://localhost:4000/api/v1");
+  
+  // Auto-prepend https:// if the protocol scheme is missing
+  if (rawUrl && !rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
+    rawUrl = `https://${rawUrl}`;
+  }
+  
   return rawUrl.endsWith("/api/v1") ? rawUrl : `${rawUrl}/api/v1`;
 };
 
