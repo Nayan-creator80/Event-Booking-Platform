@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { api } from "../api/client";
-import { Search, MapPin, Tag, Calendar, User, ArrowRight, ArrowLeft } from "lucide-react";
+import { Search, MapPin, Tag, Calendar, ArrowRight, ArrowLeft } from "lucide-react";
 
 interface Event {
   id: string;

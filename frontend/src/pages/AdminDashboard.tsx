@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "../api/client";
 import {
-  Calendar,
   Ticket,
   IndianRupee,
   Layers,
@@ -11,7 +10,6 @@ import {
   Trash2,
   X,
   Loader2,
-  ShieldAlert,
 } from "lucide-react";
 
 interface Event {

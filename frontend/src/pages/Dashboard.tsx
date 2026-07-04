@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "../api/client";
 import { useAuthStore } from "../store/authStore";
-import { Calendar, MapPin, Ticket, XCircle, Clock, ShieldAlert, Loader2 } from "lucide-react";
+import { Calendar, MapPin, Ticket, XCircle, ShieldAlert, Loader2 } from "lucide-react";
 
 interface Booking {
   id: string;

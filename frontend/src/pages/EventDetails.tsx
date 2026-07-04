@@ -76,6 +76,7 @@ export const EventDetails: React.FC = () => {
       navigate("/login");
       return;
     }
+    if (!eventData) return;
 
     setErrorMsg("");
 
@@ -160,7 +161,7 @@ export const EventDetails: React.FC = () => {
   };
 
   const handleMockPaymentSuccess = async () => {
-    if (!mockOrderDetails) return;
+    if (!mockOrderDetails || !eventData) return;
     try {
       setPaymentProcessing(true);
       setShowMockModal(false);
