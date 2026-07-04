@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-accentPurple/30 selection:text-white font-sans;
+}
+
+/* Premium gradient utility */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-accentBlue via-accentPurple to-pink-500;
+}
+
+.glass-panel {
+  @apply bg-slate-900/60 backdrop-blur-md border border-slate-800/80;
+}
+
+.glow-button {
+  @apply relative transition-all duration-300 active:scale-95 shadow-lg shadow-accentPurple/10 hover:shadow-accentPurple/30 hover:-translate-y-0.5;
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
